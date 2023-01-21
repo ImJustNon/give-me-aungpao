@@ -7,7 +7,7 @@ const urlEncoded = bodyParser.urlencoded({
     limit: '50mb',
     extended: true,
 });
-const truewallet = require('./apis/truewallet');
+const twvoucher = require('@fortune-inc/tw-voucher');
 
 app.use(express.json({
     limit: '50mb',
@@ -34,16 +34,16 @@ app.post('/redeem', urlEncoded, async(req, res) =>{
     });
 
     await truewallet.redeemvouchers(config.phoneNumber, url).then(async response => {
-        if(response.status === "SUCCESS"){
+        twvoucher(config.phoneNumber, url).then(redeemed => {
             res.render('thankyou.ejs',{
-                amount: String(response.amount),
+                amount: String(redeemed.amount),
+                from: String(redeemed.owner_full_name),
             });
-        }
-        else if(response.status === "FAIL" || response.status === "ERROR"){
+        }).catch(err => {
             res.render('giveme.ejs', {
                 error: "😭 เเง่ๆ หนูจะเอาอั่งเปา หนูอยากได้ตัง 😭",
             });
-        }
+        });
     });
 });
 

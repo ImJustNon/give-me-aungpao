@@ -34,7 +34,8 @@ module.exports = {
             return err;
         });
         const resjson = response.data ? response.data : response.response.data;
-        if(resjson.status.code == 'SUCCESS') {
+        console.log(resjson)
+        /*if(resjson.status.code == 'SUCCESS') {
             res = {
                 status: 'SUCCESS',
                 amount: parseInt(resjson.data.voucher.redeemed_amount_baht)
@@ -46,6 +47,6 @@ module.exports = {
 				reason: resjson.status.message
             };
             return res;
-        }
+        }*/
     }
 };
