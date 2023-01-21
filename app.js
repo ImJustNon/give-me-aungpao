@@ -40,6 +40,7 @@ app.post('/redeem', urlEncoded, async(req, res) =>{
             from: String(redeemed.owner_full_name),
         });
     }).catch(err => {
+        console.log(err);
         res.render('giveme.ejs', {
             error: "😭 เเง่ๆ หนูจะเอาอั่งเปา หนูอยากได้ตัง 😭",
         });
