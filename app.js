@@ -24,9 +24,9 @@ app.get('/', async(req, res) =>{
     });
 });
 
-app.post('/redeem', async(req, res) =>{
+app.post('/redeem', urlEncoded, async(req, res) =>{
     
-    const { url } = req.body;
+    const { url } = req.body ?? {};
 
     if(typeof url === "undefined") return res.json({
         status: "FAIL",
