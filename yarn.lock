@@ -2,13 +2,6 @@
 # yarn lockfile v1
 
 
-"@fortune-inc/tw-voucher@^1.0.9":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@fortune-inc/tw-voucher/-/tw-voucher-1.0.9.tgz#e264a913ed839bf5592ccb0aa218c1f283c654d2"
-  integrity sha512-nv5DaZQ1HRfRVS9gPfdkoR3lSI9WgZScGfhUqCdzHHXVLo3Vj68FTHGdL/lGv3ISS7G2kdwn3JcMt4WzVpNcKg==
-  dependencies:
-    undici "^5.0.0"
-
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -1029,7 +1022,7 @@ undefsafe@^2.0.5:
   resolved "https://registry.yarnpkg.com/undefsafe/-/undefsafe-2.0.5.tgz#38733b9327bdcd226db889fb723a6efd162e6e2c"
   integrity sha512-WxONCrssBM8TSPRqN5EmsjVrsv4A8X12J4ArBiiayv3DyyG3ZlIg6yysuuSYdZsVz3TKcTg2fd//Ujd4CHV1iA==
 
-undici@^5.0.0:
+undici@^5.15.1:
   version "5.15.1"
   resolved "https://registry.yarnpkg.com/undici/-/undici-5.15.1.tgz#5292454b1441da486a80c0f3ada1e88f1765ff8d"
   integrity sha512-XLk8g0WAngdvFqTI+VKfBtM4YWXgdxkf1WezC771Es0Dd+Pm1KmNx8t93WTC+Hh9tnghmVxkclU1HN+j+CvIUA==

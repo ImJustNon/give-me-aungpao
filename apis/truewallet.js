@@ -1,52 +1,20 @@
-const fetch = require('axios');
-const tls = require("tls");
+const {fetch} = require("undici");
 
-tls.DEFAULT_MIN_VERSION = "TLSv1.3";
+module.exports=async(e="",t="")=>{
 
-module.exports = {
-    redeemvouchers: async function (phone_number, voucher_code) {
-        voucher_code = voucher_code.replace('https://gift.truemoney.com/campaign/?v=','');
-        let res;
-        if(!/^[a-z0-9]*$/i.test(voucher_code)) {
-            res = {
-                status: 'FAIL',
-				reason: 'Vouncher only allow English alphabets or numbers.'
-            };
-            return res;
-        }
-        if(voucher_code.length <= 0) {
-            res = {
-                status: 'FAIL',
-				reason: 'Vouncher code cannot be empty.'
-            };
-            return res;
-        }
-        const data = {
-            mobile : `${phone_number}`,
-            voucher_hash : `${voucher_code}`
-        };
-        const response = await fetch(`https://gift.truemoney.com/campaign/vouchers/${voucher_code}/redeem`, {
-        method: 'post',
-        data: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json' },
-        })
-        .catch((err) => {
-            return err;
-        });
-        const resjson = response.data ? response.data : response.response.data;
-        console.log(resjson)
-        /*if(resjson.status.code == 'SUCCESS') {
-            res = {
-                status: 'SUCCESS',
-                amount: parseInt(resjson.data.voucher.redeemed_amount_baht)
-            };
-            return res;
-        } else {
-            res = {
-                status: 'FAIL',
-				reason: resjson.status.message
-            };
-            return res;
-        }*/
-    }
-};
+if(!(e=(e+"").trim()).length||e.match(/\D/)) throw Error("INVAILD_PHONE");
+    let r=(t+="").split("v=");
+    if(18!=(t=(r[1]||r[0]).match(/[0-9A-Za-z]+/)[0]).length) throw Error("INVAILD_VOUCHER");
+    let o=await fetch(`https://gift.truemoney.com/campaign/vouchers/${t}/redeem`,{
+        method:"POST",
+        headers:{
+            "content-type":"application/json"
+        },
+        body:JSON.stringify({mobile:e,voucher_hash:t})
+    }).then((e=>e.json()));
+    if("SUCCESS"==o.status.code) return {
+        amount:Number(o.data.my_ticket.amount_baht.replace(/,/g,'')),
+        owner_full_name:o.data.owner_profile.full_name,code:t
+    };
+    throw Error(o.status.code)
+}

@@ -7,7 +7,7 @@ const urlEncoded = bodyParser.urlencoded({
     limit: '50mb',
     extended: true,
 });
-const twvoucher = require('@fortune-inc/tw-voucher');
+const twvoucher = require('./apis/truewallet.js');
 
 app.use(express.json({
     limit: '50mb',
