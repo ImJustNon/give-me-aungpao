@@ -26,15 +26,14 @@ app.get('/', async(req, res) =>{
 
 app.post('/redeem', urlEncoded, async(req, res) =>{
     
-    const { url } = req.body ?? {};
-
+    const { url } = await req.body ?? {};
     if(typeof url === "undefined") {
         return res.json({
             status: "FAIL",
             error: "Aungpao URL not found",
         });
     }
-    
+
     await twvoucher(config.phoneNumber, url).then(async redeemed => {
         res.render('thankyou.ejs',{
             amount: String(redeemed.amount),
