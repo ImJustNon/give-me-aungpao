@@ -28,21 +28,21 @@ app.post('/redeem', urlEncoded, async(req, res) =>{
     
     const { url } = req.body ?? {};
 
-    if(typeof url === "undefined") return res.json({
-        status: "FAIL",
-        error: "Aungpao URL not found",
-    });
-
-    await truewallet.redeemvouchers(config.phoneNumber, url).then(async response => {
-        twvoucher(config.phoneNumber, url).then(redeemed => {
-            res.render('thankyou.ejs',{
-                amount: String(redeemed.amount),
-                from: String(redeemed.owner_full_name),
-            });
-        }).catch(err => {
-            res.render('giveme.ejs', {
-                error: "😭 เเง่ๆ หนูจะเอาอั่งเปา หนูอยากได้ตัง 😭",
-            });
+    if(typeof url === "undefined") {
+        return res.json({
+            status: "FAIL",
+            error: "Aungpao URL not found",
+        });
+    }
+    
+    await twvoucher(config.phoneNumber, url).then(async redeemed => {
+        res.render('thankyou.ejs',{
+            amount: String(redeemed.amount),
+            from: String(redeemed.owner_full_name),
+        });
+    }).catch(err => {
+        res.render('giveme.ejs', {
+            error: "😭 เเง่ๆ หนูจะเอาอั่งเปา หนูอยากได้ตัง 😭",
         });
     });
 });
