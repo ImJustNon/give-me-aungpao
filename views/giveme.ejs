@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Give Me Aungpao</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/gift.svg" type="image/x-icon">
+    <!-- CSS File -->
+    <link rel="stylesheet" href="/css/giveme.css">
+     <!-- Font Awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <!-- Bulma CSS -->
+</head>
+<body>
+    <div class="form">
+        <p>🤑 นนท์อยากได้ <strong>อั่งเปา</strong> 🤑</p>
+        <form method="post" action="/redeem">
+            <input type="text" name="url" id="url" placeholder="ใส่ลิ้งตรงนี้" required>
+            <br>
+            <br>
+            <button type="submit"><i class="fa-solid fa-paper-plane"></i> ส่งให้มันเลย <i class="fa-solid fa-paper-plane"></i></button>
+            <p class="message">
+                หมายเหตุ<br>
+                💲 ไอนนท์มันหน้าเงินเพราะงั้นเอามาเยอะๆน่ะ 💲 
+            </p>
+
+            <% if(error){ %>
+                <p class="error-message" id="error_message">
+                    <%= error %>
+                </p>
+            <% } %>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("url").addEventListener("keyup", function(e) {
+            document.getElementById("error_message").remove();
+        });
+    </script>
+</body>
+</html>

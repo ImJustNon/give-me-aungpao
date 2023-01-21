@@ -1,0 +1,89 @@
+/* body background */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Prompt&display=swap');
+
+body{
+    padding: 0;
+    margin: 0;
+    background: url(/assets/cover.jpg)no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* login form css */
+.form {
+    font-family: 'Prompt', sans-serif;
+    position: relative;
+    z-index: 1;
+    background-color: #FFFFFF;
+    opacity: 99%;
+    max-width: 1000px;
+    margin: 200px auto 100px;
+    padding: 10px 45px 30px 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 10px;
+}
+
+.form p{
+    font-size: 25px;
+    padding: 1px;
+    text-align: center;
+}
+
+.form input{
+    outline: 0;
+    border-radius: 10px;
+    background: #F2F2F2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    text-align: center;
+}
+
+.form input:hover{
+    background-color: #D3F8F9;
+    transition: all 1s ease 0.1s;
+}
+
+.form input:focus{
+    background-color: #D3F8F9;
+    transition: all 1s ease 0.1s;
+}
+
+.form button {
+    text-transform: uppercase;
+    outline: 0;
+    border-radius: 10px;
+    background: #f6781e;
+    width: 30%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.form button:hover, .form button:active, .form button:focus{
+    background-color: #f3443d;
+    transition: all 1s ease 0s;
+}
+
+.form .message{
+    margin: 15px 0 0;
+    color: #B3B3B3;
+    font-size: 15px;
+}
+
+.form .message a{
+    color: #06C5CF;
+    text-decoration: none;
+}
+
+.form .error-message{
+    color: #000000;
+    background: #f3443d;
+    text-decoration: none;
+    border-radius: 10px;
+}
