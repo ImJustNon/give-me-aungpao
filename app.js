@@ -47,6 +47,10 @@ app.post('/redeem', urlEncoded, async(req, res) =>{
     });
 });
 
+app.get('/src', (req, res) =>{
+    res.redirect("https://github.com/ImJustNon/give-me-aungpao");
+});
+
 
 
 
