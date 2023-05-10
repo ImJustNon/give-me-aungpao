@@ -1,6 +1,6 @@
 const { fetch } = require("undici");
 
-module.exports=async(e = "", t = "")=>{
+module.exports = async(e = "", t = "") =>{
 
     // Url validation
     if(!(e = (e + "").trim()).length || e.match(/\D/)){ 
