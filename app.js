@@ -48,9 +48,64 @@ app.post('/redeem', urlEncoded, async(req, res) =>{
 });
 
 app.get('/src', (req, res) =>{
-    res.redirect("https://github.com/ImJustNon/give-me-aungpao");
+    return res.redirect("https://github.com/ImJustNon/give-me-aungpao");
 });
 
+
+// ======================================================= api =======================================================
+// get method 
+app.get('/api/redeem', urlEncoded, async(req, res) =>{
+    const { url } = req.query ?? {};
+
+    if(!url){
+        return res.json({
+            status: "FAIL",
+            error: "url was not found",
+        }); 
+    }
+    await twvoucher(config.phoneNumber, url).then(async redeemed => {
+        return res.json({
+            status: "SUCCESS",
+            error: null,
+            data: {
+                amount: String(redeemed.amount),
+                from: String(redeemed.owner_full_name),
+            },
+        });
+    }).catch(err => {
+        return res.json({
+            status: "FAIL",
+            error: err,
+        });
+    });
+});
+// post method
+app.post('/api/redeem', urlEncoded, async(req, res) =>{
+    const { url } = await req.body ?? {};
+    
+    if(!url){
+        return res.json({
+            status: "FAIL",
+            error: "url was not found",
+        }); 
+    }
+    await twvoucher(config.phoneNumber, url).then(async redeemed => {
+        return res.json({
+            status: "SUCCESS",
+            error: null,
+            data: {
+                amount: String(redeemed.amount),
+                from: String(redeemed.owner_full_name),
+            },
+        });
+    }).catch(err => {
+        return res.json({
+            status: "FAIL",
+            error: err,
+        });
+    });
+});
+// ======================================================= api =======================================================
 
 
 
