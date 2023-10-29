@@ -55,7 +55,8 @@ app.get('/src', (req, res) =>{
 // ======================================================= api =======================================================
 // get method 
 app.get('/api/redeem', urlEncoded, async(req, res) =>{
-    const { url } = req.query ?? {};
+    const { number, url } = req.query ?? {};
+    let phoneNumber = config.phoneNumber;
 
     if(!url){
         return res.json({
@@ -63,7 +64,10 @@ app.get('/api/redeem', urlEncoded, async(req, res) =>{
             error: "url was not found",
         }); 
     }
-    await twvoucher(config.phoneNumber, url).then(async redeemed => {
+    if(number){
+        phoneNumber = number;
+    }
+    await twvoucher(phoneNumber, url).then(async redeemed => {
         return res.json({
             status: "SUCCESS",
             error: null,
@@ -81,15 +85,19 @@ app.get('/api/redeem', urlEncoded, async(req, res) =>{
 });
 // post method
 app.post('/api/redeem', urlEncoded, async(req, res) =>{
-    const { url } = await req.body ?? {};
-    
+    const { number, url } = await req.body ?? {};
+    let phoneNumber = config.phoneNumber;
+
     if(!url){
         return res.json({
             status: "FAIL",
             error: "url was not found",
         }); 
     }
-    await twvoucher(config.phoneNumber, url).then(async redeemed => {
+    if(number){
+        phoneNumber = number;
+    }
+    await twvoucher(phoneNumber, url).then(async redeemed => {
         return res.json({
             status: "SUCCESS",
             error: null,
